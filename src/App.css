@@ -136,6 +136,7 @@ body
   top: 300px;
   filter: blur(4px);
   animation: float 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .captainamerica {
@@ -155,6 +156,7 @@ body
   left: 88%;
   filter: blur(5px);
   animation: cup 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .coding {
@@ -166,6 +168,7 @@ body
   top: 53%;
   filter: blur(3px);
   animation: float 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .badminton {
@@ -173,6 +176,7 @@ body
   top: 79%;
   left: 30%;
   filter: blur(4px);
+  pointer-events: none;
 
 }
 
@@ -182,6 +186,7 @@ body
   left: 68%;
   transform: rotate(180deg);
   animation: here 3s ease-in-out infinite;
+  pointer-events: none;
 
 }
 
