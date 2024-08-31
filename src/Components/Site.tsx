@@ -1,4 +1,33 @@
+import { useState } from "react"
+import axios from "axios"
+
 const Site = () => {
+
+      const [formData, setFormData] = useState({
+            firstName : '',
+            lastName: '',
+            email: '',
+            phoneNumber: '',
+            message: ''
+      })
+
+      const handleChange = (e) => {
+            setFormData({
+                  ...formData,
+                  [e.target.name]: e.target.value
+            })
+      }
+
+      const handleSumbit = async (e) => {
+            e.preventDefault()
+            try {
+                  const response = await axios.post('http://localhost:5000/submit-form', formData)
+                  alert(response.data.message)
+            } catch (error) {
+                  console.log('There was an error submitting the form!', error)
+            }
+      }
+
   return (
     <div className="site-container">
         <div className=' text-center'> 
@@ -9,16 +38,55 @@ const Site = () => {
             <div className="inside-body p-10 flex flex-col gap-2 max-w-xl">
                   <h1 className=" font-semibold text-2xl">Let’s connect constellations</h1>
                   <h1 className="text-gray-500 text-xs">Let's align our constellations! Reach out and let the magic of collaboration illuminate our skies.</h1>
-                  <div className=" mt-10 flex flex-col gap-3">
+                  <form onSubmit={handleSumbit} className=" mt-10 flex flex-col gap-3">
                         <div className="flex gap-2 justify-between">
-                          <input className="input-field w-full" placeholder="First Name"></input>
-                          <input className="input-field w-full" placeholder="Last Name"></input>
+                          <input 
+                          className="input-field w-full"
+                          name="firstName" 
+                          placeholder="First Name"
+                          value={formData.firstName}
+                          onChange={handleChange}                          
+                          >
+                          </input>
+                          <input 
+                          className="input-field w-full" 
+                          name="lastName"
+                          placeholder="Last Name"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          >
+
+                          </input>
                         </div>
-                        <input className="input-field w-full" placeholder="Email"></input>
-                        <input className="input-field w-full" placeholder="Phone Number"></input>
-                        <textarea className="input-field w-full h-28" placeholder="Message"></textarea>
-                        <button>Send To The Company CEO</button>
-                  </div>
+                        <input 
+                        className="input-field w-full" 
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email} 
+                        onChange={handleChange}
+                        >
+
+                        </input>
+                        <input 
+                        className="input-field w-full"
+                        name="phoneNumber" 
+                        placeholder="Phone Number"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        >
+
+                        </input>
+                        <textarea 
+                        className="input-field w-full h-28" 
+                        name="message"
+                        placeholder="Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        >
+
+                        </textarea>
+                        <button type="submit">Send To The Company CEO</button>
+                  </form>
             </div>
             <div className="sambar">
                   <iframe src="https://infinite-world-alpha.vercel.app/" className="inner-sambar" allowFullScreen></iframe>
